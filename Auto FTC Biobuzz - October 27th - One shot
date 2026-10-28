@@ -62,14 +62,12 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
     }
 
     
-    // STEP 1: Shoot balls into the Hive
-    // Start the shooter and windmill together
+    // 1. Shoot balls into the Hive
     shooter.setPower(0.8);
     windmill.setPower(0.7);
 
     sleep(2500);
 
-    // Stop both mechanisms
     shooter.setPower(0);
     windmill.setPower(0);
 
