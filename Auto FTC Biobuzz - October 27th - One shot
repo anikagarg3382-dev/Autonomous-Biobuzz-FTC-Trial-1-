@@ -14,6 +14,7 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
   private DcMotor right_back;
   private DcMotor right_front;
   private DcMotor shooter;
+  private DcMotor windmill;
 
   @Override
   public void runOpMode() {
@@ -29,6 +30,8 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
         DcMotor.class, "right_frontAsDcMotor");
     shooter = hardwareMap.get(
         DcMotor.class, "shooter");
+    windmill = hardwareMap.get(
+    DcMotor.class, "windmill");
 
     left_front.setDirection(DcMotor.Direction.REVERSE);
     left_back.setDirection(DcMotor.Direction.REVERSE);
@@ -58,10 +61,17 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
       return;
     }
 
-    // 1. Shoot from the starting wall
+    
+    // STEP 1: Shoot balls into the Hive
+    // Start the shooter and windmill together
     shooter.setPower(0.8);
+    windmill.setPower(0.7);
+
     sleep(2500);
+
+    // Stop both mechanisms
     shooter.setPower(0);
+    windmill.setPower(0);
 
     if (isStopRequested()) {
       stopAll();
