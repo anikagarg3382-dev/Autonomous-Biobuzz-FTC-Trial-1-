@@ -5,6 +5,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous(name = "Anika_Autonomous_Shoot_and_Park")
 public class AnikaHiveShootAndParkBlue extends LinearOpMode {
@@ -14,7 +15,8 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
   private DcMotor right_back;
   private DcMotor right_front;
   private DcMotor shooter;
-  private DcMotor windmill;
+  private Servo windmill;
+
 
   @Override
   public void runOpMode() {
@@ -31,7 +33,7 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
     shooter = hardwareMap.get(
         DcMotor.class, "shooter");
     windmill = hardwareMap.get(
-    DcMotor.class, "windmill");
+        Servo.class, "windmill");
 
     left_front.setDirection(DcMotor.Direction.REVERSE);
     left_back.setDirection(DcMotor.Direction.REVERSE);
@@ -61,15 +63,15 @@ public class AnikaHiveShootAndParkBlue extends LinearOpMode {
       return;
     }
 
-    
-    // 1. Shoot balls into the Hive
+     // 1. Shoot into hive
     shooter.setPower(0.8);
-    windmill.setPower(0.7);
+    windmill.setPosition(1.0);
 
     sleep(2500);
 
+    // Stop shooter and windmill
     shooter.setPower(0);
-    windmill.setPower(0);
+    windmill.setPosition(0.0);
 
     if (isStopRequested()) {
       stopAll();
